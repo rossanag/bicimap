@@ -293,8 +293,7 @@ function actualizoMarkers()
 	  $( "#aviso" ).html( "<p>Los datos de las estaciones no están actualizados</p>" );
   }
   else
-  {
-  	alert("haaaaa");
+  {  
 	$( "#aviso" ).html( "" );  
 	for (var i = 0; i < paradas.length; i++)
 	{	
