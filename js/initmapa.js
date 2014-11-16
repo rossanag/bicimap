@@ -28,7 +28,7 @@ function loadMapa()
 				maxZoom: 18,					
 		}).addTo(mapa);	
 					
-	//mapa.on('click', onMapClick);
+	mapa.on('click', onMapClick);
 	L.control.scale().addTo(mapa);
 
 };
