@@ -1,0 +1,7 @@
+{
+  "name": "bicimap",
+  "description": "web/app para bicihumanos",
+  "repository": "https://github.com/rossanag/bicimap",
+  "logo": "",
+  "keywords": ["node", "express", "static", "request"]
+}
