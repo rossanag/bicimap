@@ -31,8 +31,8 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
     _paradas += res[0].toString();)
     _paradas += "</script>";
           
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end(_paradas);
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.end(_paradas);
 
 	console.log("\n");
 	console.log(res[0]);
