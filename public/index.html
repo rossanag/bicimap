@@ -4,22 +4,161 @@
 	<meta charset="utf8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-	<title>Desplegando paradas</title>	
-     
-    <script src="Mapas/paradas.js"></script>         
-         
+	<title>Mapa simple</title>	
+    <link rel="stylesheet" href="leaflet.css" />    
+    <link rel="stylesheet" href="css/mapa.css">    
+    <link rel="stylesheet" href="css/buscador.css">    
+    <link rel="stylesheet" href="css/MarkerCluster.css" />
+    <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="Leafletawesome-markers/dist/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="css/dist/css/bootstrap.min.css">      
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">    
+    <script src="js/jquery203.js"></script> 
+    <script src="leaflet.js"></script>                       
+    <script src="leaflet.markercluster.js"></script>  
+    <script src="Leafletawesome-markers/dist/leaflet.awesome-markers.js"></script>        
+    
 </head>
-	<body>			
-		
-      	<script >  
-			function myFunction() {
-				alert(paradas[0]);
-			}  
-		</script>
-		<button onclick="myFunction()">Try it</button>	     												
-	
-		<input type="radio" name="something" value="test1" />Test 1
-		<input type="radio" name="something" value="test2" />Test 2
-		
+ 
+	<body>		
+        <!-- This is new -->
+        <div class="btn-group">
+            <button type="button" id="allbus" class="btn btn-success">Todos</button>
+            <button type="button" id="suger" class="btn btn-primary">Tramos sugeridos</button>
+            <button type="button" id="pend" class="btn btn-danger">Pendientes</button>
+            <button type="button" id="others" class="btn btn-info">Est. de Servicio</button>
+            <button type="button" id="cafes" class="btn btn-warning">Bici amigos</button>
+            <button type="button" id="bicic" class="btn btn-default">Bicicleterías</button>
+        </div>	
+        <!-- Single button -->
+
+        <script src="js/lala2.js"></script>         
+       
+        <ul class="navigation">
+            <a class="main" href="#url">+Cerca</a>
+           <li class="n1"><a href="#"onclick="return nearestCicloVia();">Ciclovias</a></li>
+           <li class="n2"><a href="#" onclick="return nearestBiciSenda();" >Bici sendas</a></li>
+           <li class="n3"><a href="#" onclick="return nearest_estacionPM();"> Estaciones Plan Movete</a></li>
+           <li class="n4"><a href="#" onclick="return nearestInfladores();"()>Estaciones de servicio</a></li>          
+           <li class="n5"><a href="#" onclick="return nearestBicicleteria();"()>Bicicleterías</a></li>
+           <li class="n5"><a href="#" onclick="return nearestBiciAmigo();"()>Bici amigos</a></li>           
+           <li class="n5"><a href="#" onclick="return nearestSeccional();"()>Secc. Policial</a></li>      
+        </ul>
+		<div id="map"></div>	
+		<div id="aviso"></div>	
+
+
+        <script src="Mapas/estaciones.js"></script>   	                                            
+        <script src="Mapas/ciclovias.js"></script>   	                                              
+        <script src="Mapas/bicisendas.js"></script>
+        <script src="Mapas/infladores3.js"></script>
+        <script src="Mapas/pendientes.js"></script>        
+        <script src="Mapas/biciamigos.js"></script>
+        <script src="Mapas/sugeridos.js"></script>
+        <script src="Mapas/bicicleterias.js"></script>
+        <script src="Mapas/seccionales.js"></script>
+         <script src="Mapas/paradas.js"></script> <!-- para demo, sino, no va -->
+        <script src="js/initmapa.js"></script>   	
+        <script src="js/seniales.js"></script>                            
+        <script src="js/leaflet.geometryutil.js"></script>
+        <script src="js/leaflet-knn.js"></script>                                                     
+          	                                                                                                              
+		<script>			
+			loadMapa();		
+            
+
+       
+			//loadMarkers();
+            loadFacultades();								
+            cargarEstaciones();
+			obtenerDatos(5000); 
+			loadCicloVias();
+			loadBiciSendas();	
+			loadEstacionesDeServicio();
+			loadPendientes2();
+            loadSeccionales();			
+            loadBiciAmigos();
+			loadSugeridos2();
+            loadBicicleterias();  
+
+
+            // The JavaScript below is new
+          mapa.addLayer(markersInf);
+            //mapa.addLayer(layerParking)
+            mapa.addLayer(geoBiciAmigos);
+            mapa.addLayer(geoSug);
+            mapa.addLayer(geoPend);
+            mapa.addLayer(geoBicis); 
+            mapa.addLayer(markerSugeridos); 
+
+        $("#others").click(function() {
+            //mapa.removeLayer(markersInf)
+            mapa.addLayer(markersInf);
+            //mapa.removeLayer(layerParking)
+            mapa.removeLayer(geoBiciAmigos);
+            mapa.removeLayer(geoPend);
+            mapa.removeLayer(geoSug);
+            mapa.removeLayer(geoBicis);
+            mapa.removeLayer(markerSugeridos); 
+        });
+
+        $("#cafes").click(function() {
+            //mapa.removeLayer(layerParking)
+            //mapa.addLayer(layerParking)            
+            mapa.removeLayer(geoBiciAmigos);
+            mapa.addLayer(geoBiciAmigos);
+            mapa.removeLayer(geoPend);
+            mapa.removeLayer(geoSug);
+            mapa.removeLayer(markerSugeridos); 
+            mapa.removeLayer(markersInf);              
+            mapa.removeLayer(geoBicis);
+
+        });
+
+        $("#allbus").click(function() {
+            mapa.addLayer(markersInf);
+            //mapa.addLayer(layerParking)
+            mapa.addLayer(geoBiciAmigos);
+            mapa.addLayer(geoSug);
+            mapa.addLayer(markerSugeridos); 
+            mapa.addLayer(geoPend);
+            mapa.addLayer(geoBicis);
+
+        });   
+
+        $("#pend").click(function() {            
+            mapa.addLayer(geoPend);
+            //mapa.removeLayer(layerParking)           
+            mapa.removeLayer(geoBiciAmigos);
+            mapa.removeLayer(geoSug);
+            mapa.removeLayer(markerSugeridos); 
+            mapa.removeLayer(markersInf);              
+            mapa.removeLayer(geoBicis);
+
+        });
+
+        $("#suger").click(function() {            
+            mapa.addLayer(geoSug);
+            mapa.addLayer(markerSugeridos); 
+            mapa.removeLayer(markersInf)
+            //mapa.removeLayer(layerParking)
+            mapa.removeLayer(geoBiciAmigos)
+            mapa.removeLayer(geoPend)            
+            mapa.removeLayer(geoBicis)
+        });        
+
+        $("#bicic").click(function() {         
+            mapa.addLayer(geoBicis)
+            mapa.removeLayer(markersInf)
+            //mapa.removeLayer(layerParking)
+            mapa.removeLayer(geoBiciAmigos)
+            mapa.removeLayer(geoPend)            
+            mapa.removeLayer(geoSug)
+            mapa.removeLayer(markerSugeridos); 
+        });        
+
+        addSeniales();
+        //addIconSenial();
+		</script>						
 	</body>
 </html>
