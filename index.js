@@ -27,12 +27,12 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 	var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
 	//var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
 	var res = re.exec(html);
-	var _paradas += "<script>";
-    _paradas += res[0].toString();)
-    _paradas += "</script>";
+	//var _paradas += "<script>";
+    //_paradas += res[0].toString();)
+    //_paradas += "</script>";
           
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.end(_paradas);
+    //response.writeHead(200, {"Content-Type": "text/html"});
+    //response.end(_paradas);
 
 	console.log("\n");
 	console.log(res[0]);
