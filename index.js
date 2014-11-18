@@ -36,7 +36,7 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 	fs.writeFile('public/paradas.js', 'var paradas = null;');
 });
 
-//connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
+connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
 
 //var http = require('http');
 
