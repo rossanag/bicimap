@@ -21,7 +21,8 @@ var html = '';
 var res = [];
 
 setInterval(function() {
-	alert("busca las paradas");
+	console.log("\n");
+	console.log("Ejecutando");
 	request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
 	if (!error && response.statusCode == 200) {
 		html = html.replace(/(\n|\r)/g,''); 
