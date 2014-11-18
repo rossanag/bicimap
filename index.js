@@ -52,7 +52,7 @@ setInterval(function() {
 	else
 		fs.writeFile('public/paradas.js', 'var paradas = null;');
 	})
-	  }, 1000); // 3 minutos
+	  }, 60000); // 3 minutos
 
 //Ahorra irá dentro de set interval
 //request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
