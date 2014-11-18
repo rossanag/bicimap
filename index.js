@@ -20,34 +20,40 @@ var fs = require('fs');
 var html = '';
 var res = [];
 
-request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
-  if (!error && response.statusCode == 200) {
-	html = html.replace(/(\n|\r)/g,''); 
+setInterval(function() {
+	alert("busca las paradas");
+	request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
+	if (!error && response.statusCode == 200) {
+		html = html.replace(/(\n|\r)/g,''); 
 			
-	var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
-	var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
-	var res = re.exec(html);	        
+		var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
+		var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+		var res = re.exec(html);	        
 
-	console.log("\n");
-	console.log(res[0]);
-    fs.writeFile('public/paradas.js', res[0].toString());        
-  }
-  else
-	fs.writeFile('public/paradas.js', 'var paradas = null;');
-});
+		console.log("\n");
+		console.log(res[0]);
+		fs.writeFile('public/paradas.js', res[0].toString());        
+	}
+	else
+		fs.writeFile('public/paradas.js', 'var paradas = null;');
+	});
+	  }, 180000); // 3 minutos
 
-connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
+//Ahorra irá dentro de set interval
+//request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
+ //if (!error && response.statusCode == 200) {
+	//html = html.replace(/(\n|\r)/g,''); 
+			
+	//var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
+	//var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+	//var res = re.exec(html);	        
 
-//var http = require('http');
-
-//var finalhandler = require('finalhandler');
-//var serveStatic = require('serve-static');
-
-//var serve = serveStatic("./");
-
-//var server = http.createServer(function(req, res){
-//  var done = finalhandler(req, res)
-//  serve(req, res, done)
+	//console.log("\n");
+	//console.log(res[0]);
+    //fs.writeFile('public/paradas.js', res[0].toString());        
+  //}
+  //else
+	//fs.writeFile('public/paradas.js', 'var paradas = null;');
 //});
 
-//server.listen(8000);
+connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
