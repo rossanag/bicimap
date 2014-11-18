@@ -47,10 +47,10 @@ setInterval(function() {
 
 		console.log("\n");
 		console.log(res[0]);
-		fs.writeFile('public/paradas.js', res[0].toString())       
+		fs.writeFile('public/Mapas/paradas.js', res[0].toString())       
 	}
 	else
-		fs.writeFile('public/paradas.js', 'var paradas = null;');
+		fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;');
 	})
 	  }, 60000); // 3 minutos
 
