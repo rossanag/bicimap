@@ -16,7 +16,7 @@ var connect = require('connect');
 var serveStatic = require('serve-static');
 var request = require('request');
 var cheerio = require('cheerio');
-//var fs = require('fs');
+var fs = require('fs');
 var html = '';
 var res = [];
 
@@ -25,7 +25,7 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 	html = html.replace(/(\n|\r)/g,''); 
 			
 	var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
-	//var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+	var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
 	var res = re.exec(html);
 	//var _paradas += "<script>";
     //_paradas += res[0].toString();)
@@ -36,10 +36,10 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 
 	console.log("\n");
 	console.log(res[0]);
-    //fs.writeFile('public/paradas.js', res[0].toString());        
+    fs.writeFile('public/paradas.js', res[0].toString());        
   }
   else
-	//fs.writeFile('public/paradas.js', 'var paradas = null;');
+	fs.writeFile('public/paradas.js', 'var paradas = null;');
 });
 
 connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
