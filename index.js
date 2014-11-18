@@ -26,11 +26,7 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 			
 	var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
 	var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
-	var res = re.exec(html);
-	var _paradas += "<script>";
-    _paradas += res[0].toString();)
-    _paradas += "</script>";
-             
+	var res = re.exec(html);	        
 
 	console.log("\n");
 	console.log(res[0]);
@@ -40,7 +36,18 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 	fs.writeFile('public/paradas.js', 'var paradas = null;');
 });
 
-connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
-response.writeHead(200, {"Content-Type": "text/html"});
-    response.end(_paradas);
-			
+//connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
+
+//var http = require('http');
+
+//var finalhandler = require('finalhandler');
+//var serveStatic = require('serve-static');
+
+//var serve = serveStatic("./");
+
+//var server = http.createServer(function(req, res){
+//  var done = finalhandler(req, res)
+//  serve(req, res, done)
+//});
+
+//server.listen(8000);
