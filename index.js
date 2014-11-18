@@ -20,6 +20,18 @@ var fs = require('fs');
 var html = '';
 var res = [];
 
+request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
+	if (!error && response.statusCode == 200) {
+		html = html.replace(/(\n|\r)/g,''); 
+			
+		var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
+		var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+		var res = re.exec(html);	        
+
+		console.log("\n");
+		console.log(res[0]);
+		fs.writeFile('public/paradas.js', res[0].toString());  
+		
 setInterval(function() {	
 	request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
 	if (!error && response.statusCode == 200) {
@@ -31,12 +43,12 @@ setInterval(function() {
 
 		console.log("\n");
 		console.log(res[0]);
-		fs.writeFile('public/paradas.js', res[0].toString());        
+		fs.writeFile('public/paradas.js', res[0].toString())       
 	}
 	else
 		fs.writeFile('public/paradas.js', 'var paradas = null;');
 	})
-	  }, 60000); // 3 minutos
+	  }, 1000); // 3 minutos
 
 //Ahorra irá dentro de set interval
 //request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
