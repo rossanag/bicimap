@@ -27,12 +27,10 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 	var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
 	var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
 	var res = re.exec(html);
-	//var _paradas += "<script>";
-    //_paradas += res[0].toString();)
-    //_paradas += "</script>";
-          
-    //response.writeHead(200, {"Content-Type": "text/html"});
-    //response.end(_paradas);
+	var _paradas += "<script>";
+    _paradas += res[0].toString();)
+    _paradas += "</script>";
+             
 
 	console.log("\n");
 	console.log(res[0]);
@@ -43,5 +41,6 @@ request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=artic
 });
 
 connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
-
+response.writeHead(200, {"Content-Type": "text/html"});
+    response.end(_paradas);
 			
