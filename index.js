@@ -20,7 +20,6 @@ var fs = require('fs');
 var html = '';
 var res = [];
 
-alert("comienza");
 setInterval(function() {
 	alert("busca las paradas");
 	request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
