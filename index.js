@@ -20,39 +20,46 @@ var fs = require('fs');
 var html = '';
 var res = [];
 
-request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
-	if (!error && response.statusCode == 200) {
-		html = html.replace(/(\n|\r)/g,''); 
-			
-		var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
-		var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
-		var res = re.exec(html);	        
+var d = new Date();
+var h = d.getHours();
 
-		console.log("\n");
-		console.log(res[0]);
-		fs.writeFile('public/paradas.js', res[0].toString())       
-	}
-	else
-		fs.writeFile('public/paradas.js', 'var paradas = null;');
-	});
-		
-setInterval(function() {	
+// Hora de de funcionamiento de las estaciones Plan Movete 7-21hs
+if ((h <= 21) && (h >= 7))
+{
 	request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
-	if (!error && response.statusCode == 200) {
-		html = html.replace(/(\n|\r)/g,''); 
+		if (!error && response.statusCode == 200) {
+			html = html.replace(/(\n|\r)/g,''); 
 			
-		var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
-		var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
-		var res = re.exec(html);	        
+			var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
+			var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+			var res = re.exec(html);	        
 
-		console.log("\n");
-		console.log(res[0]);
-		fs.writeFile('public/Mapas/paradas.js', res[0].toString())       
-	}
-	else
-		fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;');
-	})
-	  }, 60000); // 3 minutos
+			console.log("\n");
+			console.log(res[0]);
+			fs.writeFile('public/Mapa/paradas.js', res[0].toString())       
+		}
+		else
+			fs.writeFile('public/Mapa/paradas.js', 'var paradas = null;');
+		});
+		
+	setInterval(function() {	
+		request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
+			if (!error && response.statusCode == 200) {
+				html = html.replace(/(\n|\r)/g,''); 
+			
+				var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
+				var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
+				var res = re.exec(html);	        
+
+				console.log("\n");
+				console.log(res[0]);
+				fs.writeFile('public/Mapas/paradas.js', res[0].toString())       
+			}
+		else
+			fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;');
+		})
+	}, 60000); // 3 minutos
+}	
 
 //Ahorra irá dentro de set interval
 //request('http://movete.montevideo.gub.uy/index.php?option=com_content&view=article&id=1&Itemid=2', function (error, response, html) {
@@ -71,4 +78,5 @@ setInterval(function() {
 	//fs.writeFile('public/paradas.js', 'var paradas = null;');
 //});
 
+// conecta con el servidor
 connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
