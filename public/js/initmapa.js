@@ -3,6 +3,8 @@ var osmAttrib = '';
 var mapa = null;
 var latlngmap = -1;
 
+var SO = [-34.93661, -56.31711];
+var NE = [-34.56312, -55.8078];
 
 function onMapClick(e) {
 		 var popup = L.popup();  //ANTES iba
@@ -21,6 +23,7 @@ function loadMapa()
 	osmAttrib = osmAttrib='Map data &copy <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 		
 	mapa = L.map('map').setView([-34.9053694,-56.2072348], 13); // mapa var global	
+	mapa.fitBounds([SO,NE]);
 	//mapa = L.map('map'); // mapa var global	
 	//mapa.locate({setView: true, maxZoom: 16});
 																			
