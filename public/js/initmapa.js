@@ -20,7 +20,9 @@ function loadMapa()
 	osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';	
 	osmAttrib = osmAttrib='Map data &copy <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 		
-	mapa = L.map('map').setView([-34.9053694,-56.2072348], 13); // mapa var global	
+	//mapa = L.map('map').setView([-34.9053694,-56.2072348], 13); // mapa var global	
+	mapa = L.map('map'); // mapa var global	
+	mapa.locate({setView: true, maxZoom: 16});
 																			
 	L.tileLayer(osmUrl, {
 				attribution: osmAttrib,
@@ -29,6 +31,7 @@ function loadMapa()
 		}).addTo(mapa);	
 					
 	mapa.on('click', onMapClick);
+	
 	L.control.scale().addTo(mapa);
 
 };
