@@ -36,10 +36,25 @@ if ((h <= 21) && (h >= 7))
 
 			console.log("\n");
 			console.log(res[0]);
-			fs.writeFile('public/Mapa/paradas.js', res[0].toString())       
+			fs.writeFile('public/Mapas/paradas.js', res[0].toString(),function (err) {
+ 				 if (err) //throw err;
+  					console.log('It\'s saved!',err);
+				}
+			)
+
 		}
 		else
-			fs.writeFile('public/Mapa/paradas.js', 'var paradas = null;');
+			fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;', function (err) {
+ 				 if (err) //throw err;
+  					console.log('It\'s saved! ', err);
+				}
+			);
+	});
+
+
+	fs.writeFile('message.txt', 'Hello Node', function (err) {
+  		if (err) //throw err;
+  			console.log('It\'s saved!', err);
 		});
 		
 	setInterval(function() {	
@@ -53,10 +68,18 @@ if ((h <= 21) && (h >= 7))
 
 				console.log("\n");
 				console.log(res[0]);
-				fs.writeFile('public/Mapas/paradas.js', res[0].toString())       
+				fs.writeFile('public/Mapas/paradas.js', res[0].toString(), function (err) {
+ 				 	if (err) //throw err;
+  						console.log('It\'s saved! ', err);
+					}
+				)       
 			}
 		else
-			fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;');
+			fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;',function (err) {
+ 				 if (err) //throw err;
+  					console.log('It\'s saved! ', err);
+				}
+			);
 		})
 	}, 60000); // 3 minutos
 }	
