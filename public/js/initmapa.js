@@ -5,12 +5,12 @@ var latlngmap = -1;
 
 
 function onMapClick(e) {
-		// var popup = L.popup();  //ANTES iba
+		 var popup = L.popup();  //ANTES iba
 
-		// 	popup
-		// 		.setLatLng(e.latlng)
-		// 		.setContent("Cliqueaste en " + e.latlng.toString())
-		// 		.openOn(mapa);
+		 	popup
+		 		.setLatLng(e.latlng)
+		 		.setContent("Cliqueaste en " + e.latlng.toString())
+		 		.openOn(mapa);
 			latlngmap = L.latLng(e.latlng.lat, e.latlng.lng);
 			
 		}
