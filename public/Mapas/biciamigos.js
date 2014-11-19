@@ -148,15 +148,15 @@ var biciamigos = {
       "type": "Feature",
       "properties": {
         "Nombre": "Banco de Seguros del Estado",
-        "Direc": "Av. Libertador 1465",
+        "Direc": "Av. Libertador 1464",
         "Ciudad": "Montevideo",
         "Desc": "Estacionamiento",
                      "Telef":""},
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -55.540999,
-          -30.89953          
+          -56.19348,
+          -34.90382          
         ]
       }
     }       

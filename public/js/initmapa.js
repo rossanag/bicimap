@@ -21,11 +21,14 @@ function loadMapa()
 {		
 	osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';	
 	osmAttrib = osmAttrib='Map data &copy <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+
+	bounds = new L.LatLngBounds(SO, NE);
 		
 	//mapa = L.map('map').setView([-34.9053694,-56.2072348], 13); // mapa var global	
-	mapa = L.map('map');
-	mapa.fitBounds([SO,NE]);
-	mapa.setView([-34.9053694,-56.2072348], 13); // mapa var global	
+	mapa = L.map('map',{ maxBounds:bounds, minZoom: 2, inertia:true}).setView([-34.9053694,-56.2072348], 13);
+
+	//mapa.fitBounds([SO,NE]);
+	//mapa.setView([-34.9053694,-56.2072348], 13); // mapa var global	
 	//mapa = L.map('map'); // mapa var global	
 	//mapa.locate({setView: true, maxZoom: 16});
 																			
