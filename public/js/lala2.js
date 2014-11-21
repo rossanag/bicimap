@@ -6,6 +6,7 @@ var NV = -10;  //valor no válido utilizado para inicialización
 var latlngEstaciones = [];  //latlng estaciones de Plan Movete
 var latlngInfladores = [];  // latlng infladores o estaciones de servicio
 var latlngSeccionales = [];
+var latlngBiciAmigos = [];
 var latlngRacks = []; // latlng de locales con estacionamiento para bicis
 var lmarkersFacs = null; // latlng de locales con estacionamiento para bicis
 var lmarkesE =  null;
@@ -365,20 +366,24 @@ function actualizoMarkers()
 
 function loadBiciAmigos()
 {
-	
+	var coords = [];	
 	geoBiciAmigos = L.geoJson(biciamigos, {
 		pointToLayer: function(feature, latlng) {	
 			
  			var desc = feature.properties.Nombre + "<br>" + feature.properties.Direc + " " +
  				"<br>" + feature.properties.Desc + "  " + feature.properties.Telef;
         	var marker = L.marker(latlng, { icon: parkIcon}).bindPopup(desc).addTo(mapa);
+			
 			marker.on('click', function() {
 					this.openPopup();			
-    		});	    		
+    		});	   
+    		 					
+			latlngBiciAmigos.push(L.latLng(feature.geometry.coordinates[1],feature.geometry.coordinates[0]));
     		return marker;
     	}	
 		
-	});	
+	});		
+
 }
 
 
@@ -844,7 +849,8 @@ function nearest_estacionPM()
 				//var nlatlng = L.GeometryUtil.closest(mapa,latlngEstaciones , ll); 	
 				var nlatlng = L.GeometryUtil.closest(mapa,latlngEstaciones , latlngmap);
 
-				mapa.setView(nlatlng,13); 						
+				mapa.setView(nlatlng,13); 										
+				
 			}
 			else
 				alert("Debe clickear sobre la región antes");			
@@ -864,7 +870,8 @@ function nearestInfladores()
 			
 				var nlatlng = L.GeometryUtil.closest(mapa,latlngInfladores ,latlngmap); 	
 
-				mapa.setView(nlatlng,13); 						
+				mapa.setView(nlatlng,13); 										
+				
 			}
 			else
 				alert("Debe clickear sobre la región antes");			
@@ -887,6 +894,8 @@ function nearestSeccional()
 				var nlatlng = L.GeometryUtil.closest(mapa,latlngSeccionales , latlngmap);
 
 				mapa.setView(nlatlng,13); 						
+				//mapa.panTo(nlatlng);
+				
 			}
 			else
 				alert("Debe clickear sobre la región antes");			
@@ -1004,6 +1013,8 @@ function nearestBiciSenda()
 				}
 
 				mapa.setView(lat_lng,13);				
+				//mapa.panTo(lat_lng);
+				
 			}   
 			else
 				alert("Debe clickear sobre la región antes");			
@@ -1049,7 +1060,8 @@ function nearestBicicleteria()
 				var nearest = leafletKnn(geoBicis).nearest(latlngmap, 5,Infinity);							
 				//nlatlng = puntos[0];				
 				//mapa.setView(nearest[nearest.length-1],13); 						
-				mapa.setView(nearest[0],13); 						
+				mapa.setView(nearest[0],13); 	
+				//mapa.zoomIn(10);				
 			}
 			else
 				alert("Click sobre el lugar");			
@@ -1067,13 +1079,15 @@ function nearestBiciAmigo()
 		{
 			if ((latlngmap.lat != null) && (latlngmap.lng != null))
 			{		
-							
-				//var nlatlng = L.GeometryUtil.closest(mapa,latlngBiciSendas ,latlngmap); 	
 				
-				var nearest = leafletKnn(geoBiciAmigos).nearest(latlngmap, 5,Infinity);							
-				//nlatlng = puntos[0];				
-				//mapa.setView(nearest[nearest.length-1],13); 						
-				mapa.setView(nearest[0],13); 						
+				var nlatlng = L.GeometryUtil.closest(mapa,latlngBiciAmigos,latlngmap); 	
+								
+				//var nearestpoints = leafletKnn(geoBiciAmigos).nearest(latlngmap, 5,Infinity);
+				
+				
+				mapa.setView(nlatlng,13); 
+				//mapa.panTo(nlatlng);
+				
 			}
 			else
 				alert("Click sobre el lugar");			
@@ -1149,3 +1163,6 @@ function loadFacultades()
 	lmarkersFacs.addTo(mapa);
 }
 
+// POIsLayer.eachLayer(function(POI){
+// if (POI instanceof L.LatLng) POI.mindistance = POI.distanceTo(L.GeometryUtil.closest(yourMap, LineLayer, POI));
+// });
