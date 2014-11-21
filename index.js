@@ -102,5 +102,5 @@ if ((h <= 21) && (h >= 7))
 //});
 
 // conecta con el servidor
-//connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
-connect().use(serveStatic(__dirname + '/public')).listen(8080);
+connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
+//connect().use(serveStatic(__dirname + '/public')).listen(8080);
