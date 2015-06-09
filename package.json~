@@ -1,5 +1,5 @@
 {
-  "name": "bicimap",
+  "name": "bicimapmvd",
   "version": "0.1.0",
   "description": "App para bicicletas",
   "main": "index.js",
