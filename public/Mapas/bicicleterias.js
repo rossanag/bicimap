@@ -39,8 +39,8 @@ var bicicleterias = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -56.1529,
-          -34.9098
+          -56.152866, 
+          -34.90994          
         ]
       }
     },
@@ -54,8 +54,8 @@ var bicicleterias = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -56.1625,
-          -34.8722
+          -56.162066, 
+          -34.87301          
         ]
       }
     },
@@ -69,8 +69,8 @@ var bicicleterias = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -56.2209,
-          -34.8119
+          -56.220946, 
+          -34.813398          
         ]
       }
     },
@@ -260,7 +260,7 @@ var bicicleterias = {
         "Nombre":"FALUOTICO BICICLETAS",
         "Direc":"AV ITALIA 5200, P.Rivera",
         "Ciudad":"Montevideo", 
-                     "Telef":"26131671"},
+                     "Telef":"2613 1671"},
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -308,9 +308,9 @@ var bicicleterias = {
                      "Telef":"-"},
       "geometry": {
         "type": "Point",
-        "coordinates": [          
-          -56.09520,
-          -34.53556                    
+        "coordinates": [      
+          -56.133807, 
+          -34.890138              
         ]
       }
     }, 
@@ -326,6 +326,232 @@ var bicicleterias = {
         "coordinates": [
           -56.160673,
           -34.918969          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"LV Bicicletas - alquiler de bicicletas",
+        "Direc":"Florida 1205",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2901 0792"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.1988232, 
+          -34.9088802         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Urban Bikes Montevideo",
+        "Direc":"Av. Brasil 3109",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2709 0139"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.148977, 
+          -34.914493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"GRON Montevideo",
+        "Direc":"Rostand 1571, Carrasco",
+        "Ciudad":"Montevideo", 
+                     "Telef":"27163731"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.056049, 
+          -34.889588          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"CARS bicicletas vintage",
+        "Direc":"Av Millán 4324",
+        "Ciudad":"Montevideo", 
+                     "Telef":""},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.202836, 
+          -34.845649          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Bicicletería Omar",
+        "Direc":"",
+        "Ciudad":"Montevideo", 
+                     "Telef":""},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.173117, 
+          -34.894186          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Taller de bicis José Morales",
+        "Direc":"Caldas 1733 esq Av italia <br>Horario: 15 a 19 hrs de lunes a viernes",
+        "Ciudad":"Montevideo", 
+                     "Telef":"095 024 287"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.114452, 
+          -34.887691          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Cicles Tuquin - taller de bicis",
+        "Direc":"Hernandarias 3629",
+        "Ciudad":"Montevideo", 
+                     "Telef":"25084393 - Cel 96 457785"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.132305, 
+          -34.886063          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Specialized",
+        "Direc":"Hernandarias 3629",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2614 2713"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.089869890531,
+          -34.883532846779          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Nombre":"Trek Pocitos",
+        "Direc":"Av. Brasil 2567",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2708 2498"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.157973, 
+          -34.907732
+          
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"Carrasco Bikes",
+        "Direc":"Arocena 2090",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2600 0328"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.062827,
+          34.880043
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"Pereira Bicis",
+        "Direc":"Gabriel A. Pereira 3297",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2709 0636"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.1459109,
+          -34.9113515          
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"Rueda Libre",
+        "Direc":"Ellauri 982",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2709 0636"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.1539888,
+          -34.9153897          
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"Bike House",
+        "Direc":"Avenida Rivera 6846 esq. Cartagena",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2606 1583 - 098 403 652"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.05377, 
+          -34.884901          
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"GIANT Uruguay",
+        "Direc":"Av Italia 5666 esq. Bolivia",
+        "Ciudad":"Montevideo", 
+                     "Telef":"2601 6759 - 2600 3897"},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.084776, 
+          -34.883696          
+        ]
+      }
+    },
+    {
+    "type": "Feature",
+      "properties": {
+        "Nombre":"Sapo Bike",
+        "Direc":"",
+        "Ciudad":"Montevideo", 
+                     "Telef":""},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.2081039, 
+          -34.910719          
         ]
       }
     }

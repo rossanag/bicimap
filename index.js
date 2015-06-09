@@ -31,12 +31,15 @@ if ((h <= 21) && (h >= 7))
 			html = html.replace(/(\n|\r)/g,''); 
 			
 			var re = /(var\s*paradas\s*=\s*\[([^;]+)\]);/i;  //Funciona!!
-			var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!!
-			var res = re.exec(html);	        
+			var re = /(var\s*paradas\s*=\s*\[(.*?)\]);/;  //Funciona!!
+
+			var res = re.exec(html);	
+
+			console.log(res[1].toString);        
 
 			console.log("\n");
 			console.log(res[0]);
-			fs.writeFile('public/Mapas/paradas.js', res[0].toString(),function (err) {
+			fs.writeFile('tmp/paradas.js', res[0].toString(),function (err) {
  				 if (err) //throw err;
   					console.log('It\'s saved!',err);
 				}
@@ -44,7 +47,7 @@ if ((h <= 21) && (h >= 7))
 
 		}
 		else
-			fs.writeFile('public/Mapas/paradas.js', 'var paradas = null;', function (err) {
+			fs.writeFile('tmp/paradas.js', 'var paradas = null;', function (err) {
  				 if (err) //throw err;
   					console.log('It\'s saved! ', err);
 				}
@@ -104,3 +107,4 @@ if ((h <= 21) && (h >= 7))
 // conecta con el servidor
 connect().use(serveStatic(__dirname + '/public')).listen(process.env.PORT || 5000);
 //connect().use(serveStatic(__dirname + '/public')).listen(8080);
+

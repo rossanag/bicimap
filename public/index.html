@@ -1,55 +1,175 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-	<title>Mapa simple</title>	
-    <link rel="stylesheet" href="leaflet.css" />    
-    <link rel="stylesheet" href="css/mapa.css">    
-    <link rel="stylesheet" href="css/buscador.css">    
-    <link rel="stylesheet" href="css/MarkerCluster.css" />
-    <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="Leafletawesome-markers/dist/leaflet.awesome-markers.css">
-    <link rel="stylesheet" href="css/dist/css/bootstrap.min.css">      
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">    
-    <script src="js/jquery203.js"></script> 
-    <script src="leaflet.js"></script>                       
-    <script src="leaflet.markercluster.js"></script>  
-    <script src="Leafletawesome-markers/dist/leaflet.awesome-markers.js"></script>        
-    
-</head>
- 
-	<body>		
-        <!-- This is new -->
-        <div class="btn-group">
-            <button type="button" id="allbus" class="btn btn-success">Todos</button>
-            <button type="button" id="suger" class="btn btn-primary">Tramos sugeridos</button>
-            <button type="button" id="pend" class="btn btn-danger">Pendientes</button>
-            <button type="button" id="others" class="btn btn-info">Est. de Servicio</button>
-            <button type="button" id="cafes" class="btn btn-warning">Bici amigos</button>
-            <button type="button" id="bicic" class="btn btn-default">Bicicleterías</button>
-        </div>	
-        <!-- Single button -->
+<html lang="sp" >
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Bicimapp Mvd</title>
+				
+	    
+		<link rel="stylesheet" type="text/css" href="css/menuq.css" />
+        <link rel="stylesheet" type="text/css" href="css/controlrouting.css" />
+		<link rel="stylesheet" href="leaflet.css" /> 
+        <link rel="stylesheet" href="css/Control.Geocoder.css" />        
+        <link rel="stylesheet" href="css/leaflet-routing-machine.css" /> 
+        <link rel="stylesheet" href="css/mapa.css">    
+        
+      
+        <link rel="stylesheet" href="css/jquery.toastmessage.css">    
+        
+		
+		 <script src="js/jquery203.js"></script> 
+         <script src="leaflet.js"></script>
+         <script src="Leafletawesome-markers/dist/leaflet.awesome-markers.js"></script>          
+         				 
+		 <script src="js/menur.js"></script> 		       
+         <script src="js/chkboxvars.js"></script>           
+         <script src="jquery.toastmessage.js"></script>           
+	</head>
+	<body>
+		    
+		<!-- Navigation -->
+		<div class="container">
+            <div class="main-content">                  
+                <a href="#" data-toggle=".container" id="sidebar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </a>
+                <div class="content">                       
+                </div>
+            </div>             
+            <div id="sidebar"> 
+                <ul class="menu">
+                    <li tabindex="1" class="lsm"><span class="menu1">Puntos de interés </span>
+                        <ul class="submenu">
+                            <li><a href="#" class="back">Volver</a></li>                            
+                            <li><span class="chk_bs">Bicisendas </span></li>
+                            <li><span class="chk_cv">Ciclovías</span></li>
+                            <li><span class="chk_z30">Zona 30</span></li>
+                            <li><span class="chk_es">Estaciones de Servicio</span></li>
+                            <li><span class="chk_bp">Bicipuntos</span></li>
+                            <li><span class="chk_sp">Seccionales de policía</span></li>
+                            <li><span class="chk_pm">Plan Movete</span></li>
+                            <li><span class="chk_ba">Bici amigos</span></li>
+                            <li><span class="chk_bi">Bicicleterías</span></li>                   
+                            <!-- ✔ -->                                                       
+                        </ul>   
+                
+                    </li>
+                    <li tabindex="2" class="lsm"><span class="menu2">Punto de interés cercanos</span>
+                        <ul class="submenu">
+                            <li><a href="#" class="back">Volver</a></li>                            
+                            <li><span class="rad_bs">Bicisendas </span></li>
+                            <li><span class="rad_cv">Ciclovías</span></li>
+                            <li><span class="rad_z30">Zona 30</span></li>
+                            <li><span class="rad_es">Estaciones de Servicio</span></li>
+                            <li><span class="rad_bp">Bicipuntos</span></li>
+                            <li><span class="rad_sp">Seccionales de policía</span></li>
+                            <li><span class="rad_pm">Plan Movete</span></li>
+                            <li><span class="rad_ba">Bici amigos</span></li>
+                            <li><span class="rad_bi">Bicicleterías</span></li>
+                            
+                        </ul>   
+                    </li>
+                    <li tabindex="3" class="lnsm"><span class="menu3">Ir de A a B </span></li>
+                    <li tabindex="4" class="lsm"><span class="menu4">Recorridos turísticos</span>
+                        <ul class="submenu">
+                            <li><a href="#" class="back">Volver</a></li>                            
+                            <li><span class="chk_pq">Ciudad Vieja - Pque Rodó </span></li>
+                            <li><span class="chk_pr">Paseo romántico - Prado</span></li>
+                            <li><span class="chk_pe">Barrio Peñarol</span></li>                                                 
+                        </ul> 
+                    </li>      
+                    <li tabindex="5" class="lsm"><span class="menu5">FAQ</span> 
 
-        <script src="js/lala2.js"></script>         
-       
-        <ul class="navigation">
-            <a class="main" href="#url">+Cerca</a>
-           <li class="n1"><a href="#"onclick="return nearestCicloVia();">Ciclovias</a></li>
-           <li class="n2"><a href="#" onclick="return nearestBiciSenda();" >Bici sendas</a></li>
-           <li class="n3"><a href="#" onclick="return nearest_estacionPM();"> Estaciones Plan Movete</a></li>
-           <li class="n4"><a href="#" onclick="return nearestInfladores();"()>Estaciones de servicio</a></li>          
-           <li class="n5"><a href="#" onclick="return nearestBicicleteria();"()>Bicicleterías</a></li>
-           <li class="n5"><a href="#" onclick="return nearestBiciAmigo();"()>Bici amigos</a></li>           
-           <li class="n5"><a href="#" onclick="return nearestSeccional();"()>Secc. Policial</a></li>      
-        </ul>
-		<div id="map"></div>	
-		<div id="aviso"></div>	
+                        <ul class="submenu">
+
+                            <li><a href="#" class="back">Volver</a></li>
+                                                      
+                            <li class="lsm"><a href="#openModal"> ¿Qué tan exacto es el buscador de rutas entre dos puntos?</a>                               
+
+                                <div id="openModal" class="modalDialog">
+                                    <div>
+                                        <a href="#close" title="Cerrar" class="close">X</a>
+                                        <p class="texto">
+                                        Es un estimativo eficaz del camino mas corto entre dos puntos, no el más rápido necesariamente. <br>Esto depende
+                                        de aspectos como el volúmen de tránsito en esa ruta, el
+                                        estado y tipo de camino, cantidad de semáforos, etc.
+                                        <br><br>
+                                        El objetivo es darte a conocer un camino posible y que tu experiencia, si es posible, haga el resto.</p>
+                                    </div>
+                                </div>
+                               <!--  <ul class="submenu2">  
+                                    <li class="back2"><span>Volver</span></li>
+                                    <!--li><a href="">Volver</a></li--> 
+                                   <!--  <li><span class="texto"><p>Es un estimativo eficaz del camino mas corto entre dos puntos, no el más rápido necesariamente. <br>Esto depende
+                                        de aspectos como el volúmen de tránsito en esa ruta, el
+                                        estado y tipo de camino, cantidad de semáforos, etc.
+                                        <br><br>
+                                        El objetivo es darte a conocer un camino posible y que tu experiencia, si es posible, haga el resto.</p></span>
+                                    </li>    -->
+                                <!-- </ul>            -->                  
+                            </li>
+                            <!--li class="lnsm"><span class="faq2">¿Puedo estacionar en parkings privados?</span-->
+                            <li class="lsm"><a href="#openModal1"> ¿Puedo estacionar en parkings privados?</a>  
+                            <div id="openModal1" class="modalDialog1">
+                                    <div>
+                                        <a href="#close" title="Cerrar" class="close">X</a>
+                                        <p class="texto">Sí, de acuerdo al <a href="http://normativa.montevideo.gub.uy/articulos/87984#articulo_87986" target="_blank" id="dec"> Decreto de la Junta Departamental de Montevideo Nº 34.837</a> cada 10 automóviles debe haber un espacio para bicicletas a cambio de una contraprestación económica regulada.</p>
+                                    </div>
+                                </div>     
+
+                                <!-- <ul class="submenu3">  
+                                    <li class="back3"><span>Volver</span></li>
+                                    <li><span class="texto"><p>
+                                        Sí, de acuerdo al <a href="http://normativa.montevideo.gub.uy/articulos/87984#articulo_87986" target="_blank" id="dec">Decreto de la Junta Departamental de Montevideo Nº 34.837</a> cada 10 automóviles debe haber un espacio para <br> bicicletas a cambio de una contraprestación económica regulada.
+                                           
+                                      </p></span>
+                                    </li>   
+                                </ul>      -->
+                            </li> 
+                            <li class="lsm"><a href="#openModal2"> ¿Cómo se actualizan los datos?</a>                               
+
+                                <div id="openModal2" class="modalDialog2">
+                                    <div>
+                                        <a href="#close" title="Cerrar" class="close">X</a>
+                                        <p class="texto">Los datos están actualizados de acuerdo a la información que brinda la IMM (ciclovías, bicisendas, zona30). <br> Unibici (ciclovías), Urubike (bicipuntos) y Ciclovía (biciamigos) y algunos otros que personalmente recolecté y agregué a los anteriores.<br><br>
+                                        Próximamente ustedes podrán colaborar con datos que no figuren aún en la app/web </p>
+                                    </div>
+                                </div>
+                                                  
+                        </ul>    
+                    </li>
+
+                    <li tabindex="6" class="lsm"><span class="menu6"> Acerca de</span></li>
+                </ul>                  
+            </div>
+        </div>  
+        <!--button class="btnBorrar" onclick="borrarRuta()"></button-->
+
+        <div id="map"></div>
+        <div id="aviso"></div> <!-- formatear -->
+
+        <!-- box de mensajes -->
+        <!--div class="overlay" id="overlay" style="display:none;"></div>
+        <!--div class="box" id="box">
+            <a class="boxclose" id="boxclose"></a>
+            <h3></h3>
+            <p class="vista">
+                
+            </p>
+        </div>
+        <!-- fin box de mensajes -->
 
 
-        <script src="Mapas/estaciones.js"></script>   	                                            
-        <script src="Mapas/ciclovias.js"></script>   	                                              
+
+        
+        <script src="js/lala2.js"></script> 
+
+        <!-- Resto de data -->
+        <script src="Mapas/ciclovias.js"></script>                                                    
         <script src="Mapas/bicisendas.js"></script>
         <script src="Mapas/infladores3.js"></script>
         <script src="Mapas/pendientes.js"></script>        
@@ -57,108 +177,64 @@
         <script src="Mapas/sugeridos.js"></script>
         <script src="Mapas/bicicleterias.js"></script>
         <script src="Mapas/seccionales.js"></script>
-         <script src="Mapas/paradas.js"></script> <!-- para demo, sino, no va -->
-        <script src="js/initmapa.js"></script>   	
-        <script src="js/seniales.js"></script>                            
+        <script src="Mapas/bicipuntos.js"></script>
+        <script src="Mapas/zona30.js"></script>
+        <script src="Mapas/CVyrambla.js"></script>
+        <script src="Mapas/paseoPrado.js"></script>
+        <script src="Mapas/paseoPeniarol.js"></script>
+        
+        <script src="js/initmapa.js"></script>      
+        <!--script src="js/seniales.js"></script-->                            
         <script src="js/leaflet.geometryutil.js"></script>
-        <script src="js/leaflet-knn.js"></script>                                                     
-          	                                                                                                              
-		<script>			
-			loadMapa();		
+        <script src="js/leaflet-routing-machine.js"></script>
+        <script src="js/Control.Geocoder.js"></script>  
+        <script src="js/controlrouting.js"></script> 
+        <!--script src="js/box.js"></script--> 
+        <script src="js/adminmenus.js"></script>  
+        <script src="Mapas/paradas.js"></script> <!-- para demo, sino, no va -->
+        <!--script src="leaflet.markercluster-src.js"></script-->  
+        <script src="js/leaflet-knn.js"></script>        
+
+        <script>            
+
+            loadMapa(); 
+            loadFacultades();  
+            loadPuntosInteres();
+            encontrarPuntosCercanos();
+            
+            irAaB();
+            loadPaseosTuristicos();
+            borrarRAD();
+
+            //cargarEstaciones();
+            //obtenerDatos(5000); 
+
+
             
 
-       
-			//loadMarkers();
-            loadFacultades();								
-            cargarEstaciones();
-			obtenerDatos(5000); 
-			loadCicloVias();
-			loadBiciSendas();	
-			loadEstacionesDeServicio();
-			loadPendientes2();
-            loadSeccionales();			
+
+            /* loadCicloVias();   
+            loadBiciSendas();  */
+
+            /*
+            loadEstacionesDeServicio();
+            
+            loadSeccionales();          
             loadBiciAmigos();
-			loadSugeridos2();
-            loadBicicleterias();  
+            loadSugeridos2();
+            loadBiciPuntos();
+            loadBicicleterias();  */
 
-
-            // The JavaScript below is new
-          mapa.addLayer(markersInf);
-            //mapa.addLayer(layerParking)
+             // The JavaScript below is new
+            /*mapa.addLayer(inflamarkers);
+            mapa.addLayer(lmarkersS)
             mapa.addLayer(geoBiciAmigos);
-            mapa.addLayer(geoSug);
-            mapa.addLayer(geoPend);
+            mapa.addLayer(geoSug);            
             mapa.addLayer(geoBicis); 
-            mapa.addLayer(markerSugeridos); 
-
-        $("#others").click(function() {
-            //mapa.removeLayer(markersInf)
-            mapa.addLayer(markersInf);
-            //mapa.removeLayer(layerParking)
-            mapa.removeLayer(geoBiciAmigos);
-            mapa.removeLayer(geoPend);
-            mapa.removeLayer(geoSug);
-            mapa.removeLayer(geoBicis);
-            mapa.removeLayer(markerSugeridos); 
-        });
-
-        $("#cafes").click(function() {
-            //mapa.removeLayer(layerParking)
-            //mapa.addLayer(layerParking)            
-            mapa.removeLayer(geoBiciAmigos);
-            mapa.addLayer(geoBiciAmigos);
-            mapa.removeLayer(geoPend);
-            mapa.removeLayer(geoSug);
-            mapa.removeLayer(markerSugeridos); 
-            mapa.removeLayer(markersInf);              
-            mapa.removeLayer(geoBicis);
-
-        });
-
-        $("#allbus").click(function() {
-            mapa.addLayer(markersInf);
-            //mapa.addLayer(layerParking)
-            mapa.addLayer(geoBiciAmigos);
-            mapa.addLayer(geoSug);
-            mapa.addLayer(markerSugeridos); 
-            mapa.addLayer(geoPend);
-            mapa.addLayer(geoBicis);
-
-        });   
-
-        $("#pend").click(function() {            
-            mapa.addLayer(geoPend);
-            //mapa.removeLayer(layerParking)           
-            mapa.removeLayer(geoBiciAmigos);
-            mapa.removeLayer(geoSug);
-            mapa.removeLayer(markerSugeridos); 
-            mapa.removeLayer(markersInf);              
-            mapa.removeLayer(geoBicis);
-
-        });
-
-        $("#suger").click(function() {            
-            mapa.addLayer(geoSug);
-            mapa.addLayer(markerSugeridos); 
-            mapa.removeLayer(markersInf)
-            //mapa.removeLayer(layerParking)
-            mapa.removeLayer(geoBiciAmigos)
-            mapa.removeLayer(geoPend)            
-            mapa.removeLayer(geoBicis)
-        });        
-
-        $("#bicic").click(function() {         
-            mapa.addLayer(geoBicis)
-            mapa.removeLayer(markersInf)
-            //mapa.removeLayer(layerParking)
-            mapa.removeLayer(geoBiciAmigos)
-            mapa.removeLayer(geoPend)            
-            mapa.removeLayer(geoSug)
-            mapa.removeLayer(markerSugeridos); 
-        });        
-
-        addSeniales();
-        //addIconSenial();
-		</script>						
+            mapa.addLayer(markerSugeridos); */
+        </script>    
 	</body>
 </html>
+
+
+

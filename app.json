@@ -1,7 +1,0 @@
-{
-  "name": "bicimap",
-  "description": "web/app para bicihumanos",
-  "repository": "https://github.com/rossanag/bicimapmvd",
-  "logo": "",
-  "keywords": ["node", "express", "static", "request"]
-}
