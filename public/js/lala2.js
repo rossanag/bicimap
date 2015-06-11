@@ -359,7 +359,7 @@ function actualizarMapa()
 	//alert("actualizando markeeeers");	//COMENTADO PARA ENVIAR DEMO
 
 	//$.getScript("http://localhost:5000/Mapas/paradas.js").done(function( script, textStatus ) {		
-	$.getScript("http://bicimap-montevideo.rhcloud.com/Mapas/paradas.js").done(function( script, textStatus ) {				
+	$.getScript("http://bicimapp-montevideo.rhcloud.com/Mapas/paradas.js").done(function( script, textStatus ) {				
 
 		//alert("encontro http");
 		//console.log("paradas[0][6] de archivo ");console.log(paradas[0][6]);
