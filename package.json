@@ -4,7 +4,7 @@
   "description": "App para bicicletas",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "supervisor index.js"
   },
   "dependencies": {
     "cheerio": "0.18.0",
